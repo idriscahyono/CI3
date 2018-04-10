@@ -73,7 +73,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="assets/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -83,9 +82,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li><a href="<?php echo site_url('home');?>">Home</a></li>
       <li><a href="<?php echo site_url('about');?>">About</a></li>      
       <li><a href="<?php echo site_url('contact') ?>">Contact</a></li>
-      <li  class="active"><a href="<?php echo site_url('news') ?>">News</a></li>
+      <li><a href="<?php echo site_url('news') ?>">News</a></li>
       <li><a href="<?php echo site_url('blog') ?>">Blog</a></li>
-      <li><a href="<?php echo site_url('crud') ?>">Tambah Blog</a></li>
+      <li class="active"><a href="<?php echo site_url('crud') ?>">Tambah Blog</a></li>
     </ul>
     <div class="navbar-form navbar-left" action="/action_page.php">
       	<div class="input-group">
@@ -104,23 +103,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        </li>
     </ul>   
   </div>
-</nav>
+</nav>	
 	<div id="container">
-	<h1>News</h1>
+		<h1>Data Blog</h1>
 
-	<div class="colxs-12 col-sn-12 col-md-12 col-lg-12">
-		<?php for ($i=0; $i < $jumlahNews; $i++) { ?> 
-			Jumlah Berita <br>
-		<?php } ?>
+		<?php echo "<p>".anchor('crud/tambah', 'Tambah Data')."<p>"; ?>
+    <table border="1" cellpadding="7">
+      <tr>
+        <th>ID</th>
+        <th>Author</th>
+        <th>Date</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Image</th>
+        <th colspan="2">Aksi</th>
+      </tr>
+      <?php
+      if( ! empty($blog)){ // Jika data siswa tidak sama dengan kosong, artinya jika data siswa ada
+        foreach($blog as $data){
+          echo "<tr>
+          <td>".$data->id."</td>
+          <td>".$data->author."</td>
+          <td>".$data->date."</td>
+          <td>".$data->title."</td>
+          <td>".$data->content."</td>
+          <td>".$data->image_file."</td>
+          <td><a href='".base_url("ubah".$data->id)."'>Ubah</a></td>
+          <td><a href='".base_url("hapus".$data->id)."'>Hapus</a></td>
+          </tr>";
+        }
+      }else{ // Jika data siswa kosong
+        echo "<tr><td align='center' colspan='7'>Data Tidak Ada</td></tr>";
+      }
+      ?>
+    </table>
 		
 	</div>
-
-	<!-- <div id="body">
-		<h2>Nama  : Idris Cahyono</h2>
-		<h2>Nim	  	: 1641720184 </h2>
-	</div> -->
-
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-</div>
 </body>
 </html>

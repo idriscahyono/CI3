@@ -73,7 +73,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="assets/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -83,9 +82,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li><a href="<?php echo site_url('home');?>">Home</a></li>
       <li><a href="<?php echo site_url('about');?>">About</a></li>      
       <li><a href="<?php echo site_url('contact') ?>">Contact</a></li>
-      <li  class="active"><a href="<?php echo site_url('news') ?>">News</a></li>
-      <li><a href="<?php echo site_url('blog') ?>">Blog</a></li>
-      <li><a href="<?php echo site_url('crud') ?>">Tambah Blog</a></li>
+      <li><a href="<?php echo site_url('news') ?>">News</a></li>
+      <li class="active"><a href="<?php echo site_url('blog') ?>">Blog</a></li>
     </ul>
     <div class="navbar-form navbar-left" action="/action_page.php">
       	<div class="input-group">
@@ -104,23 +102,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        </li>
     </ul>   
   </div>
-</nav>
+</nav>	
 	<div id="container">
-	<h1>News</h1>
-
-	<div class="colxs-12 col-sn-12 col-md-12 col-lg-12">
-		<?php for ($i=0; $i < $jumlahNews; $i++) { ?> 
-			Jumlah Berita <br>
-		<?php } ?>
-		
+		<h1>Blog</h1>
+		<?php 
+			echo "<h2>".$artikel['title']."</h2>
+				<p>Author: ".$artikel['author']."</p>
+				<p>Date  : ".$artikel['date']."<p>
+				<p>".$artikel['content']."<p>";
+		 ?>
+		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 	</div>
-
-	<!-- <div id="body">
-		<h2>Nama  : Idris Cahyono</h2>
-		<h2>Nim	  	: 1641720184 </h2>
-	</div> -->
-
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-</div>
 </body>
 </html>
