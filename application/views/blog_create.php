@@ -83,8 +83,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li><a href="<?php echo site_url('about');?>">About</a></li>      
       <li><a href="<?php echo site_url('contact') ?>">Contact</a></li>
       <li><a href="<?php echo site_url('news') ?>">News</a></li>
-      <li class="active"><a href="<?php echo site_url('blog') ?>">Blog</a></li>
-      <li><a href="<?php echo site_url('crud') ?>">Tambah Blog</a></li>
+      <li><a href="<?php echo site_url('blog') ?>">Blog</a></li>
+      <li><a href="<?php echo site_url('blog/create') ?>">Tambah Blog</a></li>
+      <li><a href="<?php echo site_url('login') ?>">Login</a></li>
     </ul>
     <div class="navbar-form navbar-left" action="/action_page.php">
       	<div class="input-group">
@@ -105,17 +106,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 </nav>
 	<div id="container">
-		<h1>Blog</h1>
-		<?php 
-			foreach ($daftar_artikel->result() as $a) 
-			{
-				echo "<h3>".$a->title."</h3>
-				<p>Author: ".$a->author."</p>
-				<p>Date  : ".$a->date."<p>
-				<p>".$a->content."<p>
-				<p>".anchor('blog/read/'.$a->id,'Detail')."<p>";
-			}
-		 ?>
+		<div class="row">
+				<div class="col-lg-8 offset-lg-2">
+					
+					<?php    
+						$this->form_validation->set_error_delimiters('<div class="alert alert-warning" role="alert">', '</div>');
+					?>
+					<?php echo validation_errors(); ?>
+
+					<?php echo (isset( $upload_error)) ? '<div class="alert alert-warning" role="alert">' .$upload_error. '</div>' : ''; ?>
+
+					<?php echo form_open_multipart(); ?>
+
+					<div class="form-group">
+						<label for="title">Judul Artikel</label>
+						<input type="text" class="form-control" name="title" value="<?php echo set_value('title') ?>">
+					</div>
+					<div class="form-group">
+						<label for="text">Konten</label>
+						<textarea class="form-control" name="text" rows="3"><?php echo set_value('text') ?></textarea>
+					</div>
+					<div class="form-group">
+						<label for="thumbnail">Gambar thumbnail</label>
+						<input type="file" class="form-control-file" name="thumbnail">
+					</div>
+					<button type="submit" class="btn btn-primary">Post Artikel</button>
+				</form>
+			</div>
+		</div>
 		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 	</div>
 </body>

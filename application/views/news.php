@@ -83,9 +83,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li><a href="<?php echo site_url('home');?>">Home</a></li>
       <li><a href="<?php echo site_url('about');?>">About</a></li>      
       <li><a href="<?php echo site_url('contact') ?>">Contact</a></li>
-      <li  class="active"><a href="<?php echo site_url('news') ?>">News</a></li>
+      <li><a href="<?php echo site_url('news') ?>">News</a></li>
       <li><a href="<?php echo site_url('blog') ?>">Blog</a></li>
-      <li><a href="<?php echo site_url('crud') ?>">Tambah Blog</a></li>
+      <li><a href="<?php echo site_url('blog/create') ?>">Tambah Blog</a></li>
+      <li><a href="<?php echo site_url('login') ?>">Login</a></li>
     </ul>
     <div class="navbar-form navbar-left" action="/action_page.php">
       	<div class="input-group">

@@ -83,7 +83,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li><a href="<?php echo site_url('about');?>">About</a></li>      
       <li><a href="<?php echo site_url('contact') ?>">Contact</a></li>
       <li><a href="<?php echo site_url('news') ?>">News</a></li>
-      <li class="active"><a href="<?php echo site_url('blog') ?>">Blog</a></li>
+      <li><a href="<?php echo site_url('blog') ?>">Blog</a></li>
+      <li><a href="<?php echo site_url('blog/create') ?>">Tambah Blog</a></li>
+      <li><a href="<?php echo site_url('login') ?>">Login</a></li>
     </ul>
     <div class="navbar-form navbar-left" action="/action_page.php">
       	<div class="input-group">
@@ -102,15 +104,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        </li>
     </ul>   
   </div>
-</nav>	
+</nav>
 	<div id="container">
-		<h1>Blog</h1>
-		<?php 
-			echo "<h2>".$artikel['title']."</h2>
-				<p>Author: ".$artikel['author']."</p>
-				<p>Date  : ".$artikel['date']."<p>
-				<p>".$artikel['content']."<p>";
-		 ?>
+		<div class="row">
+				<form action="proseslogin.php" method="POST" name="loginadmin">
+				    <div class="login-page">
+				    <div class="form">
+				      <form class="login-form">
+				        <input type="text" name="username" placeholder="username" required="required"/>
+				        <input type="password" name="password" placeholder="password" required="required"/>
+				        <button type="submit" name="login">login</button>
+				        <p class="message">Not registered? <a href="buatakun.php">Create an account</a></p>
+				      </form>
+				    </div>
+				  </div>
+		</div>
 		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 	</div>
 </body>
