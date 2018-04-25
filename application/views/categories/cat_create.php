@@ -87,7 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li><a href="<?php echo site_url('blog') ?>">Blog</a></li>
       <li><a href="<?php echo site_url('blog/create') ?>">Tambah Blog</a></li>
       <li><a href="<?php echo site_url('login') ?>">Login</a></li>
-      <li><a href="<?php echo site_url('category') ?>">Kategori</a></li>
+      <li><a href="<?php echo site_url('kategori') ?>">Kategori</a></li>
     </ul>
     <div class="navbar-form navbar-left" action="<?php echo site_url('home');?>">
       	<div class="input-group">
@@ -108,104 +108,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 </nav>
 	<div id="container">
-	<h1>Selamat Datang</h1>
+	<h1>Kategori</h1>
+		<main role="main" class="container">
+	<section class="jumbotron text-center">
+	</section>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2">
 
-	<div id="body">
-		<h2>Nama  : Idris Cahyono</h2>
-		<h2>Nim	  	: 1641720184 </h2>
+					<?php echo form_open( 'category/create', array('class' => 'needs-validation', 'novalidate' => '') ); ?>
+
+					<div class="form-group">
+						<label for="cat_name">Nama Kategori</label>
+						<input type="text" class="form-control" name="cat_name" value="<?php echo set_value('cat_name') ?>" required>
+						<div class="invalid-feedback">Isi judul dulu gan</div>
+					</div>
+					<div class="form-group">
+						<label for="text">Deskripsi</label>
+						<input type="text" class="form-control" name="cat_description" value="<?php echo set_value('cat_description') ?>" required>
+						<div class="invalid-feedback">Isi deskripsinya dulu gan</div>
+					</div>
+					<button id="submitBtn" type="submit" class="btn btn-primary">Simpan</button>
+				</form>
+			</div>
+		</div>
 	</div>
-	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	<div class="table-responsive">
-		<h1>Biodata Query Array</h1>
-		<table class="table table-hover">
-			<tbody>
-				<?php foreach ($biodata_array as $key){ ?>
-				<tr>
-					<td><?php echo $key['id'] ?></td>
-				</tr>
-				<tr>
-					<td><?php echo $key['nama'] ?></td>
-				</tr>
-				<tr>
-					<td><?php echo $key['nim'] ?></td>
-				</tr>
-				<tr>
-					<td><?php echo $key['alamat'] ?></td>
-				</tr>
-				<?php } ?>
-			</tbody>
-		</table>
-	</div>
-	</div>
-	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	<div class="table-responsive">
-		<h1>Biodata Dari Object</h1>
-	<table class="table table-hover">
-		<tbody>
-			<?php foreach ($biodata_object as $key){ ?>
-			<tr>
-				<td><?php echo $key->id ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $key->nama ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $key->nim ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $key->alamat ?></td>
-			</tr>
-			<?php } ?>
-		</tbody>
-	</table>
-	</div>
-	</div>
-	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	<div class="table-responsive">
-		<h1>Biodata Query Builder Array</h1>
-		<table class="table table-hover">
-			<tbody>
-				<?php foreach ($biodataBuilder_array as $key){ ?>
-				<tr>
-					<td><?php echo $key['id'] ?></td>
-				</tr>
-				<tr>
-					<td><?php echo $key['nama'] ?></td>
-				</tr>
-				<tr>
-					<td><?php echo $key['nim'] ?></td>
-				</tr>
-				<tr>
-					<td><?php echo $key['alamat'] ?></td>
-				</tr>
-				<?php } ?>
-			</tbody>
-		</table>
-	</div>
-	</div>
-	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	<div class="table-responsive">
-		<h1>Biodata Dari Builder Object</h1>
-	<table class="table table-hover">
-		<tbody>
-			<?php foreach ($biodataBuilder_object as $key){ ?>
-			<tr>
-				<td><?php echo $key->id ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $key->nama ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $key->nim ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $key->alamat ?></td>
-			</tr>
-			<?php } ?>
-		</tbody>
-	</table>
-	</div>
-	</div>
+</section>
+</main>
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
 </body>

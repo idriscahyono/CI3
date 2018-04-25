@@ -87,7 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li><a href="<?php echo site_url('blog') ?>">Blog</a></li>
       <li><a href="<?php echo site_url('blog/create') ?>">Tambah Blog</a></li>
       <li><a href="<?php echo site_url('login') ?>">Login</a></li>
-      <li><a href="<?php echo site_url('category') ?>">Kategori</a></li>
+      <li><a href="<?php echo site_url('kategori') ?>">Kategori</a></li>
     </ul>
     <div class="navbar-form navbar-left" action="<?php echo site_url('home');?>">
       	<div class="input-group">
@@ -108,104 +108,60 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </div>
 </nav>
 	<div id="container">
-	<h1>Selamat Datang</h1>
+	<h1>Kategori</h1>
+		<main role="main">
+		<section class="jumbotron text-center">
+			<div class="container">
+				<h1 class="jumbotron-heading"><?php echo $page_title ?></h1>
+				
+				<p>
+					<?php echo anchor('category/create', 'Buat Kategori Baru', array('class' => 'btn btn-primary')); ?>
+				</p>
+			</div>
+		</section>
 
-	<div id="body">
-		<h2>Nama  : Idris Cahyono</h2>
-		<h2>Nim	  	: 1641720184 </h2>
-	</div>
-	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	<div class="table-responsive">
-		<h1>Biodata Query Array</h1>
-		<table class="table table-hover">
-			<tbody>
-				<?php foreach ($biodata_array as $key){ ?>
-				<tr>
-					<td><?php echo $key['id'] ?></td>
-				</tr>
-				<tr>
-					<td><?php echo $key['nama'] ?></td>
-				</tr>
-				<tr>
-					<td><?php echo $key['nim'] ?></td>
-				</tr>
-				<tr>
-					<td><?php echo $key['alamat'] ?></td>
-				</tr>
-				<?php } ?>
-			</tbody>
-		</table>
-	</div>
-	</div>
-	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	<div class="table-responsive">
-		<h1>Biodata Dari Object</h1>
-	<table class="table table-hover">
-		<tbody>
-			<?php foreach ($biodata_object as $key){ ?>
-			<tr>
-				<td><?php echo $key->id ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $key->nama ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $key->nim ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $key->alamat ?></td>
-			</tr>
-			<?php } ?>
-		</tbody>
-	</table>
-	</div>
-	</div>
-	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	<div class="table-responsive">
-		<h1>Biodata Query Builder Array</h1>
-		<table class="table table-hover">
-			<tbody>
-				<?php foreach ($biodataBuilder_array as $key){ ?>
-				<tr>
-					<td><?php echo $key['id'] ?></td>
-				</tr>
-				<tr>
-					<td><?php echo $key['nama'] ?></td>
-				</tr>
-				<tr>
-					<td><?php echo $key['nim'] ?></td>
-				</tr>
-				<tr>
-					<td><?php echo $key['alamat'] ?></td>
-				</tr>
-				<?php } ?>
-			</tbody>
-		</table>
-	</div>
-	</div>
-	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-	<div class="table-responsive">
-		<h1>Biodata Dari Builder Object</h1>
-	<table class="table table-hover">
-		<tbody>
-			<?php foreach ($biodataBuilder_object as $key){ ?>
-			<tr>
-				<td><?php echo $key->id ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $key->nama ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $key->nim ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $key->alamat ?></td>
-			</tr>
-			<?php } ?>
-		</tbody>
-	</table>
-	</div>
-	</div>
+		<?php if( !empty($categories) ) : ?>
+		<div class="album py-5 bg-light">
+			<div class="container">
+				<div class="row">
+
+					<?php
+						// Kita looping data dari controller
+						foreach ($categories as $key) :
+					?>
+
+					<div class="col-md-4">
+						<!-- Kita format tampilan blog dalam bentuk card -->
+						<!-- https://getbootstrap.com/docs/4.0/components/card/ -->
+						<div class="card mb-4 box-shadow border-0">
+														
+							<div class="card-body">
+
+								<!-- Batasi cuplikan konten dengan substr sederhana -->
+								<h5><?php echo character_limiter($key->cat_name, 40) ?></h5>
+								<p class="card-text"><?php echo word_limiter($key->cat_description, 20) ?></p>
+								
+								<div class="d-flex justify-content-between align-items-center">
+									<div class="btn-group">
+										<!-- Untuk link detail -->
+										<a href="<?php echo base_url('category/'.$key->cat_id) ?>" class="btn btn-outline-secondary">Lihat Artikel</a>
+										<a href="<?php echo base_url(). 'category/edit/' . $key->cat_id ?>" class="btn btn-outline-secondary">Edit</a>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					<?php endforeach; ?>
+
+				</div>
+			</div>
+		</div>
+		<?php else : ?>
+		<p>Belum ada data bosque.</p>
+		<?php endif; ?>
+		
+	</main>
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
 </body>
