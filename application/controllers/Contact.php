@@ -11,7 +11,9 @@
 				'email' => "Idriscahyono@gmail.com",
 				'nim' => "1641720184",
 				 );
+			$this->load->view('templates/header');
 			$this->load->view('contact', $data);
+			$this->load->view('templates/footer');
 		}
 
 		function __construct()

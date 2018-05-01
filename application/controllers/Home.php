@@ -9,7 +9,10 @@ class Home extends CI_Controller {
 		$data['biodata_object']=$this->biodata->getBiodataQueryObject();
 		$data['biodataBuilder_array']=$this->biodata->getBiodataBuilderArray();
 		$data['biodataBuilder_object']=$this->biodata->getBiodataBuilderObject();
+		$this->load->view('templates/header');
 		$this->load->view('home', $data);
+		$this->load->view('templates/footer');
+
 	}
 
 	public function about()

@@ -73,6 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="assets/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -81,42 +82,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <ul class="nav navbar-nav">
       <li><a href="<?php echo site_url('home');?>">Home</a></li>
       <li><a href="<?php echo site_url('about');?>">About</a></li>      
-      <li><a href="<?php echo site_url('contact') ?>">Contact</a></li>
+      <li><a href="<?php echo site_url('contact'); ?>">Contact</a></li>
       <li><a href="<?php echo site_url('news') ?>">News</a></li>
       <li><a href="<?php echo site_url('blog') ?>">Blog</a></li>
       <li><a href="<?php echo site_url('blog/create') ?>">Tambah Blog</a></li>
-      <li><a href="<?php echo site_url('login') ?>">Login</a></li>
-    </ul>
-    <div class="navbar-form navbar-left" action="/action_page.php">
-      	<div class="input-group">
-        	<input type="text" class="form-control" placeholder="Search" name="search">
-    	</div>
-    	<button type="submit" class="btn btn-default">Submit</button>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-      <!-- <li><a href="#">About</a></li> -->
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Software <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Android</a></li>
-          <li><a href="#">IOS</a></li>
-          <li><a href="#">Windows</a></li>
-        </ul>
-       </li>
+      <li><a href="<?php echo site_url('category') ?>">Category</a></li>
     </ul>   
   </div>
 </nav>
-	<div id="container">
-		<div class="row">
-				<div class="col-lg-8 offset-lg-2">
-					<?php echo $artikel->post_content ?>
-					<hr>
-					<div class="highlight text-center">
-						<a href="<?php echo base_url() ?>blog/edit/<?php echo $artikel->id ?>" class="btn btn-secondary">Edit</a>
-						<a href="<?php echo base_url() ?>blog/delete/<?php echo $artikel->id ?>" class="btn btn-danger">Hapus</a>
-					</div>
-				</div>
-			</div>
-		<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-	</div>
-</body>
-</html>
