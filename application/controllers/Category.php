@@ -89,7 +89,7 @@ class Category extends CI_Controller{
 	    $this->load->helper('form');
 	    $this->load->library('form_validation');
 
-	    // Kita validasi input sederhana, sila cek http://localhost/ci3/user_guide/libraries/form_validation.html
+	    // validasi input sederhana
 		$this->form_validation->set_rules('cat_name', 'Nama Kategori', 'required',
 			array('required' => 'Isi %s donk, males amat.'));
 	    $this->form_validation->set_rules('cat_description', 'Deskripsi', 'required');

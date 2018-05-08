@@ -61,8 +61,15 @@
 			</div>
 		</div>
 		<?php else : ?>
-		<p>Belum ada data bosque.</p>
-		<?php endif; ?>
+		<p>Belum ada data</p>
+		<?php endif; ?>	
 		
+		<?php
+				if (isset($links))
+				{
+					echo $links;
+				}	 
+		 ?>
 	</main>
+
 	

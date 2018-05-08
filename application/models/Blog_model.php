@@ -8,7 +8,12 @@ class Blog_model extends CI_Model {
     	parent::__construct();
     }
 
-	public function get_all_artikel() {
+	public function get_all_artikel( $limit = FALSE, $offset = FALSE) {
+
+        if($limit)
+        {
+            $this->db->limit($limit, $offset);
+        }
     	// Query Manual
     	// $query = $this->db->query('
     	// 		SELECT * FROM blogs
@@ -95,5 +100,10 @@ class Blog_model extends CI_Model {
         $query = $this->db->get_where('blogs', array('cat_id' => $category_id));
   
         return $query->result();
+    }
+
+    public function get_total()
+    {
+        return $this->db->count_all("blogs");
     }
 }

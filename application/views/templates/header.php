@@ -87,6 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li><a href="<?php echo site_url('blog') ?>">Blog</a></li>
       <li><a href="<?php echo site_url('blog/create') ?>">Tambah Blog</a></li>
       <li><a href="<?php echo site_url('category') ?>">Category</a></li>
+      <li><a href="<?php echo site_url('datatables') ?>">Datatables</a></li>
     </ul>   
   </div>
 </nav>
