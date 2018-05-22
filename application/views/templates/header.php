@@ -72,8 +72,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
 </head>
-<body>
 
+<body>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -88,6 +88,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li><a href="<?php echo site_url('blog/create') ?>">Tambah Blog</a></li>
       <li><a href="<?php echo site_url('category') ?>">Category</a></li>
       <li><a href="<?php echo site_url('datatables') ?>">Datatables</a></li>
+      <li><a href="<?php echo site_url('user/register') ?>">Registrasi</a></li>
+      <li><a href="<?php echo site_url('user/login') ?>">Login</a></li>
     </ul>   
   </div>
 </nav>
+  	   <?php if($this->session->flashdata('user_registered')): ?>
+       		<?php echo '<div class="alert alert-success" role="alert">'.$this->session->flashdata('user_registered').'</div>'; ?>
+       <?php endif; ?>
+
+       <?php if($this->session->flashdata('login_failed')): ?>
+        	<?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>
+       <?php endif; ?>
+
+       <?php if($this->session->flashdata('user_loggedout')): ?>
+        	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
+       <?php endif; ?>
+        <?php if($this->session->flashdata('user_loggedin')): ?>
+        	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedin').'</p>'; ?>
+       <?php endif; ?>
+
+		<div style="text-align: center;">
+	       	<?php if(!$this->session->userdata('loggedin')) : ?>
+   			<div class="btn-group" role="group" aria-label="Data">
+	       		<?php echo anchor('user/register', 'Register', array('class' => 'btn btn-outline-light')); ?>
+	       		<?php echo anchor('user/login', 'Login', array('class' => 'btn btn-outline-light')); ?>
+			</div>
+
+	   	<?php endif; ?>
+
+	   	<?php if($this->session->userdata('loggedin')) : ?>
+   			<div class="btn-group" role="group" aria-label="Data">
+		       <?php echo anchor('blog/create', 'Artikel Baru', array('class' => 'btn btn-outline-light')); ?>
+		       <?php echo anchor('category/create', 'Kategori Baru', array('class' => 'btn btn-outline-light')); ?>
+		       <?php echo anchor('user/logout', 'Logout', array('class' => 'btn btn-outline-light')); ?>
+   			</div>
+		<?php endif; ?>
+		</div>
