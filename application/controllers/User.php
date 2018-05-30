@@ -6,7 +6,7 @@
 		public function __construct()
 		{
 			parent::__construct();
-			
+			$this->load->helper('form');
 			$this->load->library('form_validation');
 			$this->load->helper('MY_helper');
 			$this->load->model('user_model');
@@ -18,22 +18,22 @@
 			$this->form_validation->set_rules('email', 'Email', 'required|is_unique[users.email]');
 			$this->form_validation->set_rules('alamat', 'Alamat', 'required');
 			$this->form_validation->set_rules('kodePos', 'Kode Pos', 'required');
-			$this->form_validation->set_rules('username', 'Username', 'required|is_unique[users.username');
+			$this->form_validation->set_rules('username', 'Username', 'required|is_unique[users.username]');
 			$this->form_validation->set_rules('password', 'Password', 'required');
-			$this->form_validation->set_rules('password2', 'Konfirmasi Password', 'matches[password]');
+			$this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|matches[password]');
 
-			if ($this->form_validation->run() === FALSE) {
-				$this->load->view('templates/header');
-				$this->load->view('user/register');
-				$this->load->view('templates/footer');
-			}
-			else
-			{
+			if ($this->form_validation->run() == TRUE) {
 				$encript_password = md5($this->input->post('password'));
 				$this->user_model->registered($encript_password);
 
 				$this->session->set_flashdata('user_registered', 'Selamat Anda Telah Teregistrasi');
 				redirect('blog');
+			}
+			else
+			{
+				$this->load->view('templates/header');
+				$this->load->view('user/register');
+				$this->load->view('templates/footer');
 			}
 		}
 
@@ -42,7 +42,7 @@
 			$this->form_validation->set_rules('username', 'Username', 'required');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 
-			if($this->form_validation->run() === FALSE)
+			if($this->form_validation->run() == FALSE)
 			{
 				$this->load->view('templates/header');
 				$this->load->view('user/login');
@@ -53,21 +53,23 @@
 				$username = $this->input->post('username');
 				$password = md5($this->input->post('password'));
 
-				$id_user = $this->user_model->login($username, $password);
+				$dataUser['user'] = $this->user_model->login($username, $password);
 
-				if($id_user)
+				if($dataUser['user']!=FALSE)
 				{
-					$data_user = array(
-						'user_id' => $id_user,
-						'username' => $username,
-						'password' =>$password,
-						'logged_in' => true 
-					);
+					foreach ($dataUser['user'] as $key) {
+						$data = array(
+							'user_id' => $key['user_id'],
+							'username' => $username,
+							'password' =>$password,
+							'logged_in' => true
+						);
 
-					$this->session->set_userdata($data_user);
+						$this->session->set_userdata($data);
 
-					$this->session->set_flashdata('user_loggedin', 'Sekarang Sudah Login');
-					redirect('blog');
+						$this->session->set_flashdata('user_loggedin', 'Sekarang Sudah Login');
+						redirect('blog');
+					}
 				}
 				else
 				{

@@ -19,14 +19,14 @@ class User_model extends CI_Model {
 
 	public function login($username, $password)
 	{
-		$this->db->where('username', $username);
-		$this->db->where('password', $password);
-
-		$result = $this->db->get('users');
+		// $this->db->where('username', $username);
+		// $this->db->where('password', $password);
+		$result = $this->db->query("select * from users where username = '".$username."' AND password = '".$password."'");
+		// $result = $this->db->get('users');
 
 		if($result->num_rows() == 1)
 		{
-			return $result->row(0)->id_user;
+			return $result->result_array();
 		}
 		else
 		{
