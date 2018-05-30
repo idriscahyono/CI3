@@ -1,3 +1,4 @@
+<?php $this->load->view('templates/header'); ?>
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
@@ -19,3 +20,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </body>
 </html>
+<?php $this->load->view('templates/footer'); ?>

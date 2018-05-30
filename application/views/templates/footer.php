@@ -9,5 +9,12 @@
 
 		<!-- Custom -->
 		<script src="<?php echo base_url() ?>assets/js/custom.js"></script>
+
+		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/jquery.dataTables.min.css">
+		<!-- <script src="assets/js/jquery.dataTables.min.js"></script> -->
+		<script src="assets/js/jquery.dataTables.bootstrap4.min.js"></script>
+		<script src="assets/datatables/dataTables.bootstrap.css"></script>
+		<!-- <script src="assets/datatables/dataTables.bootstrap.js"></script> -->
+		<script src="assets/datatables/jquery.dataTables.js"></script>
 	</body>
 </html>

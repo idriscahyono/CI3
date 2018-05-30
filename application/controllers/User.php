@@ -14,27 +14,38 @@
 
 		public function register()
 		{
-			$this->form_validation->set_rules('nama', 'Nama', 'required');
-			$this->form_validation->set_rules('email', 'Email', 'required|is_unique[users.email]');
-			$this->form_validation->set_rules('alamat', 'Alamat', 'required');
-			$this->form_validation->set_rules('kodePos', 'Kode Pos', 'required');
-			$this->form_validation->set_rules('username', 'Username', 'required|is_unique[users.username]');
-			$this->form_validation->set_rules('password', 'Password', 'required');
-			$this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|matches[password]');
-
-			if ($this->form_validation->run() == TRUE) {
-				$encript_password = md5($this->input->post('password'));
-				$this->user_model->registered($encript_password);
-
-				$this->session->set_flashdata('user_registered', 'Selamat Anda Telah Teregistrasi');
-				redirect('blog');
+			$levelUser = $this->session->userdata('levelUser');
+			if ($levelUser['level'] == 1)
+			{
+				$this->load->view('templates/header');
+				$this->load->view('user/login');
+				$this->load->view('templates/footer');
 			}
 			else
 			{
-				$this->load->view('templates/header');
-				$this->load->view('user/register');
-				$this->load->view('templates/footer');
+				$this->form_validation->set_rules('nama', 'Nama', 'required');
+				$this->form_validation->set_rules('email', 'Email', 'required|is_unique[users.email]');
+				$this->form_validation->set_rules('alamat', 'Alamat', 'required');
+				$this->form_validation->set_rules('kodePos', 'Kode Pos', 'required');
+				$this->form_validation->set_rules('username', 'Username', 'required|is_unique[users.username]');
+				$this->form_validation->set_rules('password', 'Password', 'required');
+				$this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|matches[password]');
+
+				if ($this->form_validation->run() == TRUE) {
+					$encript_password = md5($this->input->post('password'));
+					$this->user_model->registered($encript_password);
+
+					$this->session->set_flashdata('user_registered', 'Selamat Anda Telah Teregistrasi');
+					redirect('blog');
+				}
+				else
+				{
+					$this->load->view('templates/header');
+					$this->load->view('user/register');
+					$this->load->view('templates/footer');
+				}
 			}
+			
 		}
 
 		public function login()
@@ -62,12 +73,13 @@
 							'user_id' => $key['user_id'],
 							'username' => $username,
 							'password' =>$password,
+							'level' => $key['level'],
 							'logged_in' => true
 						);
 
-						$this->session->set_userdata($data);
+						$this->session->set_userdata('levelUser', $data);
 
-						$this->session->set_flashdata('user_loggedin', 'Sekarang Sudah Login');
+						$this->session->set_flashdata('user_loggedin', 'Berhasil Login');
 						redirect('blog');
 					}
 				}
@@ -84,6 +96,7 @@
 			$this->session->unset_userdata('loggedin');
 			$this->session->unset_userdata('id_user');
 			$this->session->unset_userdata('username');
+			$this->session->unset_userdata('levelUser');
 
 			$this->session->flashdata('user_loggedout', 'Anda Sekarang Sudah Logout');
 

@@ -1,5 +1,3 @@
-<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
-
 <main role="main">
 
 	<section class="jumbotron text-center">
@@ -12,7 +10,7 @@
     <section class="py-5 bg-light">
         <div class="container">
             <div class="row">
-                <table id="dt-basic" class="table table-striped table-bordered">
+                <table id="example" class="table table-striped table-bordered" width="100%">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -24,19 +22,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($data as $d) : ?>
+                        <?php foreach ($data as $key => $value): ?>
                         <tr>
-                            <td><?php echo $d->post_id ?></td>
-                            <td><?php echo $d->post_date ?></td>
-                            <td><?php echo $d->post_title ?></td>
-                            <td><?php echo $d->cat_name ?></td>
-                            <td><?php echo $d->post_status ?></td>
+                            <td><?php echo $value->post_id ?></td>
+                            <td><?php echo $value->post_date ?></td>
+                            <td><?php echo $value->post_title ?></td>
+                            <td><?php echo $value->cat_name ?></td>
+                            <td><?php echo $value->post_status ?></td>
                             <td>
-                                <a href="<?php echo base_url('/blog/edit/') . $d->post_id ?>" class="btn btn-sm btn-outline-primary">Edit</a> 
-                                <a href="<?php echo base_url('/blog/delete/') . $d->post_id ?>" class="btn btn-sm btn-outline-danger">Delete</a> 
+                                <a href="<?php echo base_url('/blog/edit/') . $value->post_id ?>" class="btn btn-sm btn-outline-primary">Edit</a> 
+                                <a href="<?php echo base_url('/blog/delete/') . $value->post_id ?>" class="btn btn-sm btn-outline-danger">Delete</a> 
                             </td>
                         </tr>
-                        <?php endforeach; ?>
+                        <?php endforeach ?>
                     </tbody>
                 </table>
             </div>
@@ -44,12 +42,11 @@
     </section>
 	
 </main>
-<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/jquery.dataTables.min.css">
-<script src="<?php echo base_url() ?>assets/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url() ?>assets/js/jquery.dataTables.bootstrap4.min.js"></script>
-<script>
-    jQuery(document).ready(function(){
-        $('#dt-basic').DataTable();
-    });
-
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+    } );
+} );
 </script>

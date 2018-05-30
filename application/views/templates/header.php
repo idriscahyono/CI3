@@ -71,6 +71,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/jquery-3.3.1.js">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css">
+<!--   
+	<link rel="stylesheet" href="<?php echo base_url()."assets/" ?>css/jquery.dataTables.min.css">
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.dataTables.min.js"></script>
+
+	<script src="assets/js/jquery2.0.3.min.js"></script>
+	<script src="assets/js/raphael-min.js"></script>
+	<script src="assets/js/morris.js"></script> -->
 </head>
 
 <body>
@@ -85,10 +104,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li><a href="<?php echo site_url('contact'); ?>">Contact</a></li>
       <li><a href="<?php echo site_url('news') ?>">News</a></li>
       <li><a href="<?php echo site_url('blog') ?>">Blog</a></li>
+      <?php if (isset($_SESSION['levelUser'])) { ?>
       <li><a href="<?php echo site_url('blog/create') ?>">Tambah Blog</a></li>
       <li><a href="<?php echo site_url('category') ?>">Category</a></li>
       <li><a href="<?php echo site_url('datatables') ?>">Datatables</a></li>
-      <?php if (isset($_SESSION['username'])) { ?>
       <li><a href="<?php echo site_url('user/logout') ?>">Logout</a></li>
       <?php } else {?>
       <li><a href="<?php echo site_url('user/register') ?>">Registrasi</a></li>
