@@ -33,6 +33,23 @@ class User_model extends CI_Model {
 			return false;
 		}
 	}
+
+	public function get_all_user()
+	{
+		$query = $this->db->get('users');
+		return $query->result();
+	}
+
+	public function delete($id)
+	{
+		if ( !empty($id) )
+		{
+	    	$delete = $this->db->delete('users', array('user_id'=>$id));
+	        return $delete ? true : false;
+    	} else {
+    		return false;
+    	}
+	}
 	
 
 }

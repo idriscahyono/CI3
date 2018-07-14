@@ -108,6 +108,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <li><a href="<?php echo site_url('blog/create') ?>">Tambah Blog</a></li>
       <li><a href="<?php echo site_url('category') ?>">Category</a></li>
       <li><a href="<?php echo site_url('datatables') ?>">Datatables</a></li>
+      <li><a href="<?php echo site_url('ManageUser') ?>">Manage User</a></li>
       <li><a href="<?php echo site_url('user/logout') ?>">Logout</a></li>
       <?php } else {?>
       <li><a href="<?php echo site_url('user/register') ?>">Registrasi</a></li>
@@ -132,12 +133,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         	<?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedin').'</p>'; ?>
        <?php endif; ?>
 
-		<div style="text-align: center;">
+<!-- 		<div style="text-align: center;">
 	       	<?php if(!$this->session->userdata('loggedin')) : ?>
    			<div class="btn-group" role="group" aria-label="Data">
 	       		<?php echo anchor('user/register', 'Register', array('class' => 'btn btn-outline-light')); ?>
 	       		<?php echo anchor('user/login', 'Login', array('class' => 'btn btn-outline-light')); ?>
-			</div>
+	</div> -->
 
 	   	<?php endif; ?>
 

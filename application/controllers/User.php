@@ -23,13 +23,13 @@
 			}
 			else
 			{
-				$this->form_validation->set_rules('nama', 'Nama', 'required');
+				/*$this->form_validation->set_rules('nama', 'Nama', 'required');
 				$this->form_validation->set_rules('email', 'Email', 'required|is_unique[users.email]');
 				$this->form_validation->set_rules('alamat', 'Alamat', 'required');
 				$this->form_validation->set_rules('kodePos', 'Kode Pos', 'required');
 				$this->form_validation->set_rules('username', 'Username', 'required|is_unique[users.username]');
 				$this->form_validation->set_rules('password', 'Password', 'required');
-				$this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|matches[password]');
+				$this->form_validation->set_rules('password2', 'Konfirmasi Password', 'required|matches[password]');*/
 
 				if ($this->form_validation->run() == TRUE) {
 					$encript_password = md5($this->input->post('password'));
